@@ -1,7 +1,8 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { SignerWalletAdapter } from '@solana/wallet-adapter-base';
 import { BN, Idl } from '@project-serum/anchor';
-import { createFakeWallet } from '@/common/gem-bank';
+//import { createFakeWallet } from '@/common/gem-bank';
+import { programs } from '@metaplex/js';
 import {
   GemFarmClient,
   FarmConfig,
@@ -9,19 +10,18 @@ import {
   FixedRateConfig,
   WhitelistType,
   findWhitelistProofPDA,
-  GEM_FARM_PROG_ID,
   GEM_BANK_PROG_ID,
-} from '@gemworks/gem-farm-ts';
-import { programs } from '@metaplex/js';
+  GEM_FARM_PROG_ID,
+} from '../../../../../src/index';
 
 export async function initGemFarm(
   conn: Connection,
   wallet?: SignerWalletAdapter
 ) {
-  const walletToUse = wallet ?? createFakeWallet();
+  //const walletToUse = wallet ?? createFakeWallet();
   const farmIdl = await (await fetch('gem_farm.json')).json();
   const bankIdl = await (await fetch('gem_bank.json')).json();
-  return new GemFarm(conn, walletToUse as any, farmIdl, bankIdl);
+  return new GemFarm(conn, wallet as any, farmIdl, bankIdl);
 }
 
 export class GemFarm extends GemFarmClient {

@@ -3,7 +3,7 @@
     <TheNavBar />
     <div class="pt-10 px-10 flex justify-center align-middle">
       <p class="text-4xl pt-3 px-1 mt-1 text-black underline">GEM</p>
-      <img :width="50" :height="50" src="./assets/400x600.gif" />
+      <img :width="50" :height="50" src="./assets/logo.png" />
       <p class="text-4xl pt-3 px-2 mt-1 text-black underline">FARM</p>
     </div>
     <div class="italic mt-5 text-center">by Gemworks</div>
@@ -13,17 +13,13 @@
     </div>
 
     <div class="pt-10"></div>
-    <TheCat />
-    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheNavBar from '@/components/TheNavBar';
-import TheFooter from '@/components/gem-farm/TheFooter';
-import TheCat from '@/components/gem-farm/TheCat';
 export default {
-  components: { TheCat, TheFooter, TheNavBar },
+  components: { TheNavBar },
 };
 </script>
 

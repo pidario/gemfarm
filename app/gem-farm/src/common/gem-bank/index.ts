@@ -1,16 +1,16 @@
 import { BN, Idl } from '@project-serum/anchor';
-import {
-  findWhitelistProofPDA,
-  GEM_BANK_PROG_ID,
-  GemBankClient,
-  WhitelistType,
-} from '@gemworks/gem-farm-ts';
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { SignerWalletAdapter } from '@solana/wallet-adapter-base';
-import { NodeWallet, programs } from '@metaplex/js';
+import { /*NodeWallet,*/ programs } from '@metaplex/js';
+import {
+  findWhitelistProofPDA,
+  GemBankClient,
+  WhitelistType,
+  GEM_BANK_PROG_ID,
+} from '../../../../../src/index';
 
 //when we only want to view vaults, no need to connect a real wallet.
-export function createFakeWallet() {
+/*export function createFakeWallet() {
   const leakedKp = Keypair.fromSecretKey(
     Uint8Array.from([
       208, 175, 150, 242, 88, 34, 108, 88, 177, 16, 168, 75, 115, 181, 199, 242,
@@ -20,16 +20,16 @@ export function createFakeWallet() {
     ])
   );
   return new NodeWallet(leakedKp);
-}
+}*/
 
 //need a separate func coz fetching IDL is async and can't be done in constructor
 export async function initGemBank(
   conn: Connection,
   wallet?: SignerWalletAdapter
 ) {
-  const walletToUse = wallet ?? createFakeWallet();
+  //const walletToUse = wallet ?? createFakeWallet();
   const idl = await (await fetch('gem_bank.json')).json();
-  return new GemBank(conn, walletToUse as any, idl);
+  return new GemBank(conn, wallet as any, idl);
 }
 
 export class GemBank extends GemBankClient {

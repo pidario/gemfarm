@@ -32,8 +32,8 @@ import TheWhitelist from '@/components/TheWhitelist.vue';
 import ConfigPane from '@/components/ConfigPane.vue';
 import { initGemBank } from '@/common/gem-bank';
 import BankDetails from '@/components/BankDetails.vue';
-import { stringifyPKsAndBNs } from '@gemworks/gem-farm-ts';
 import ManageVaults from '@/components/ManageVaults.vue';
+import { stringifyPKsAndBNs } from '../../../../src/index';
 
 export default defineComponent({
   components: { ManageVaults, BankDetails, ConfigPane, TheWhitelist },

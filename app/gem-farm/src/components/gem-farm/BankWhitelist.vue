@@ -53,11 +53,11 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from 'vue';
-import { WhitelistType } from '@gemworks/gem-farm-ts';
 import useCluster from '@/composables/cluster';
 import useWallet from '@/composables/wallet';
 import { PublicKey } from '@solana/web3.js';
 import { initGemFarm } from '@/common/gem-farm';
+import { WhitelistType } from '../../../../../src/index';
 
 export default defineComponent({
   props: {

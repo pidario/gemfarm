@@ -49,6 +49,35 @@ You can interact with them using this [front-end](https://www.gemfarm.gg/) (or b
 
 Note that deploying your own version will cost you ~20 SOL.
 
+- nginx and tls:
+install dependencies:
+apt install nginx certbot python3-certbot-nginx
+create site configuration:
+/etc/nginx/sites-available/DOMAIN
+server {
+        listen 80;
+        listen [::]:80;
+
+        root ROOT_FOLDER;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name DOMAIN WWW_DOMAIN_OPTIONAL;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+test configuration:
+nginx -t
+enable site:
+ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+request let's encrypt certificate:
+certbot --nginx -d DOMAIN
+verify auto renewal:
+systemctl status certbot.timer
+simulate renewal:
+certbot renew --dry-run
+
 # Debug cryptic errors ⚠️
 
 If you get a cryptic error back that looks something like this: 

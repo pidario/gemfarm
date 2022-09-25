@@ -70,7 +70,6 @@ import TestMint from '@/components/gem-farm/TestMint.vue';
 import { initGemFarm } from '@/common/gem-farm';
 import InitFarm from '@/components/gem-farm/InitFarm.vue';
 import { PublicKey } from '@solana/web3.js';
-import { stringifyPKsAndBNs } from '@gemworks/gem-farm-ts';
 import AuthorizeFunder from '@/components/gem-farm/AuthorizeFunder.vue';
 import FundCancelLock from '@/components/gem-farm/FundCancelLock.vue';
 import RefreshFarmer from '@/components/gem-farm/RefreshFarmer.vue';
@@ -78,6 +77,7 @@ import TreasuryPayout from '@/components/gem-farm/TreasuryPayout.vue';
 import TheWhitelist from '@/components/gem-farm/BankWhitelist.vue';
 import UpdateFarm from '@/components/gem-farm/UpdateFarm.vue';
 import FarmDisplay from '@/components/gem-farm/FarmDisplay.vue';
+import { stringifyPKsAndBNs } from '../../../../src/index';
 
 export default defineComponent({
   components: {
