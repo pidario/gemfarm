@@ -80,7 +80,7 @@ server {
         server_name DOMAIN WWW_DOMAIN_OPTIONAL;
 
         location / {
-                try_files $uri $uri/ =404;
+                try_files $uri $uri/ $uri.html /index.html;
         }
 }
 ```
