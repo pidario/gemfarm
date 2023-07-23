@@ -65,7 +65,7 @@ install dependencies:
 
 `apt install nginx certbot python3-certbot-nginx`
 
-create default configuration, for example in `/etc/nginx/sites-available/default` (it might already exist, in this case, overwrite all the lines):
+create default configuration, for example in `/etc/nginx/sites-available/default` (it might already exist, in this case, overwrite all the lines, unless you need them for some reason; if you do not have other sites on the same server, you're probably fine):
 
 ```
 server {
@@ -81,7 +81,9 @@ server {
 }
 ```
 
-enable it: `ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/`
+enable it:
+
+`ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/`
 
 create site configuration:
 
