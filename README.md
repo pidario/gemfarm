@@ -14,11 +14,11 @@ Gem Bank is used under the hood by Gem Farm.
 
 Both programs are now officially deployed across all 3 networks (mainnet, devnet, testnet):
 ```
-bank: bankHHdqMuaaST4qQk6mkzxGeKPHWmqdgor6Gs8r88m
-farm: farmL4xeBFVXJqtfxCzU9b28QACM7E2W2ctT6epAjvE
+bank: 29j1S79rmS2tthGS6m8n6Cz94QNwuJ62HFmNDJjX6NfE
+farm: BXdLcNcVbFHTfumox1qnz85YhVgw36t9CsQFtdQdTGLt
 ```
 
-You can interact with them using this [front-end](https://www.gemfarm.gg/) (or build your own).
+You can interact with them using this [front-end](https://cryptobac.art/) (or build your own).
 
 # Deploy your own version 🛠
 
@@ -49,11 +49,27 @@ You can interact with them using this [front-end](https://www.gemfarm.gg/) (or b
 
 Note that deploying your own version will cost you ~20 SOL.
 
-- nginx and tls:
+## building a production ready site:
+
+cd into `app/gem-bank` and build it
+
+`VUE_APP_MAINNET_URL=https://HOST/PATH/ yarn build`
+
+do the same thing for `app/gem-farm`
+
+now deploy both `app/gem-farm/dist` and `app/gem-bank/dist` folders and set them as the `ROOT_FOLDER` in the `nginx` configuration below
+
+## nginx and tls:
+
 install dependencies:
-apt install nginx certbot python3-certbot-nginx
+
+`apt install nginx certbot python3-certbot-nginx`
+
 create site configuration:
-/etc/nginx/sites-available/DOMAIN
+
+`/etc/nginx/sites-available/DOMAIN`
+
+```
 server {
         listen 80;
         listen [::]:80;
@@ -67,16 +83,27 @@ server {
                 try_files $uri $uri/ =404;
         }
 }
+```
+
 test configuration:
-nginx -t
+
+`nginx -t`
+
 enable site:
-ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+`ln -s /etc/nginx/sites-available/DOMAIN /etc/nginx/sites-enabled/`
+
 request let's encrypt certificate:
-certbot --nginx -d DOMAIN
+
+`certbot --nginx -d DOMAIN`
+
 verify auto renewal:
-systemctl status certbot.timer
+
+`systemctl status certbot.timer`
+
 simulate renewal:
-certbot renew --dry-run
+
+`certbot renew --dry-run`
 
 # Debug cryptic errors ⚠️
 
