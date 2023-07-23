@@ -65,33 +65,51 @@ install dependencies:
 
 `apt install nginx certbot python3-certbot-nginx`
 
+create default configuration, for example in `/etc/nginx/sites-available/default` (it might already exist, in this case, overwrite all the lines):
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    
+    listen 443 default_server;
+    listen [::]:443 default_server;
+    ssl_reject_handshake on;
+    
+    server_name _;
+    return 444;
+}
+```
+
+enable it: `ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/`
+
 create site configuration:
 
 `/etc/nginx/sites-available/DOMAIN`
 
 ```
 server {
-        listen 80;
-        listen [::]:80;
-
-        root ROOT_FOLDER;
-        index index.html index.htm index.nginx-debian.html;
-
-        server_name DOMAIN WWW_DOMAIN_OPTIONAL;
-
-        location / {
-                try_files $uri $uri/ $uri.html /index.html;
-        }
+    listen 80;
+    listen [::]:80;
+    
+    root ROOT_FOLDER;
+    index index.html index.htm index.nginx-debian.html;
+    
+    server_name DOMAIN WWW_DOMAIN_OPTIONAL;
+    
+    location / {
+        try_files $uri $uri/ $uri.html /index.html;
+    }
 }
 ```
-
-test configuration:
-
-`nginx -t`
 
 enable site:
 
 `ln -s /etc/nginx/sites-available/DOMAIN /etc/nginx/sites-enabled/`
+
+test configuration:
+
+`nginx -t`
 
 request let's encrypt certificate:
 
